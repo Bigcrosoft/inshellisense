@@ -201,7 +201,24 @@ const optionSuggestions = (
 };
 
 const getEscapedPath = (value?: string): string | undefined => {
-  return value?.replaceAll(" ", "\\ ");
+  return (
+    value
+      // Escape spaces
+      ?.replaceAll(" ", "\\ ")
+      // Escape parentheses
+      .replaceAll("(", "\\(")
+      .replaceAll(")", "\\)")
+      // Escape brackets
+      .replaceAll("[", "\\[")
+      .replaceAll("]", "\\]")
+      // Escape braces
+      .replaceAll("{", "\\{")
+      .replaceAll("}", "\\}")
+      // Escape single quotes
+      .replaceAll("'", "\\'")
+      // Escape double quotes
+      .replaceAll('"', '\\"')
+  );
 };
 
 function adjustPathSuggestions(suggestions: Suggestion[], partialToken?: CommandToken): Suggestion[] {
