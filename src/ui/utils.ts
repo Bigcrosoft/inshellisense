@@ -45,7 +45,7 @@ const wcPoints = (text: string, length: number): [string, boolean] => {
   let accWidth = 0;
   for (const point of points) {
     const width = wcwidth(point);
-    if (width + accWidth > length) {
+    if (width + accWidth >= length) {
       return wcwidth(accPoints.join("")) < length ? [accPoints.join(""), true] : [accPoints.slice(0, -1).join(""), true];
     }
     accPoints.push(point);
