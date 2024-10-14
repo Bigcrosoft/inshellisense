@@ -93,7 +93,7 @@ export class SuggestionManager {
 
   validate(suggestion: SuggestionsSequence): SuggestionsSequence {
     const commandText = this.#term.getCommandState().commandText;
-    return !commandText ? { data: "", rows: 0 } : suggestion;
+    return !commandText ? { data: "", rows: 0 } : { ...suggestion, data: suggestion.data.replace(/ /g, "\\\\ ") };
   }
 
   async render(remainingLines: number): Promise<SuggestionsSequence> {
